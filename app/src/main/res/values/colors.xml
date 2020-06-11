@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#9F9F9F</color>
+    <color name="colorPrimaryDark">#9F9F9F</color>
+    <color name="colorAccent">#9F9F9F</color>
 
     <color name="windowBackground">#F3F3F3</color>
 
-    <color name="statusBarColor">#A10097</color>
+    <color name="statusBarColor">#9F9F9F</color>
 
     <color name="textColor">@android:color/black</color>
 
-    <color name="bulbColor">#A10097</color>
+    <color name="bulbColor">@android:color/black</color>
 
 </resources>
