@@ -89,6 +89,40 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:padding="8dp"
+                android:id="@+id/add"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/border"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@+id/clock"
+                app:layout_constraintStart_toStartOf="@+id/clock"
+                app:layout_constraintTop_toBottomOf="@+id/clock">
+
+                <EditText
+                    android:hint="@string/add_to_do_s"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textSize="24sp"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/floating_action_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="@color/btnColor"
+                    android:contentDescription="@string/fab_content_desc"
+                    app:srcCompat="@drawable/ic_plus_24"/>
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
