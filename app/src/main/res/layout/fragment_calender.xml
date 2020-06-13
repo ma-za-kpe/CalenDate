@@ -8,6 +8,7 @@
     </data>
 
     <ScrollView
+        android:layout_marginBottom="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -53,7 +54,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginBottom="16dp"
                 android:id="@+id/clock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
