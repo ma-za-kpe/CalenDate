@@ -16,49 +16,66 @@
             android:layout_height="wrap_content"
             tools:context=".ui.calender.CalenderFragment">
 
-            <TextView
-                android:id="@+id/title"
-                android:gravity="center"
+            <LinearLayout
+                android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:text="@string/pick_a_date"
-                android:textSize="24sp"
+                android:background="@drawable/border"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-            </TextView>
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/pick_a_date"
+                    android:textSize="24sp">
 
-            <!-- Add CalenderView to display the Calender -->
-            <CalendarView
-                android:id="@+id/calender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/title"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toBottomOf="@+id/title">
+                </TextView>
 
-            </CalendarView>
+                <!-- Add CalenderView to display the Calender -->
+                <CalendarView
+                    android:id="@+id/calender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                </CalendarView>
 
 
-            <TextView
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="16dp"
                 android:id="@+id/clock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:gravity="center"
-                android:text="@string/pick_time"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toTopOf="@+id/alarmTimePicker"
-                app:layout_constraintEnd_toEndOf="@+id/calender"
-                app:layout_constraintStart_toStartOf="@+id/calender"
-                app:layout_constraintTop_toBottomOf="@+id/calender">
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/date"
+                app:layout_constraintStart_toStartOf="@+id/date"
+                app:layout_constraintTop_toBottomOf="@+id/date">
 
-            </TextView>
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/clocktime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:gravity="center"
+                    android:text="@string/pick_time"
+                    android:textSize="24sp"/>
 
             <TimePicker
                 android:id="@+id/alarmTimePicker"
@@ -68,9 +85,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintStart_toStartOf="@+id/clock"
-                app:layout_constraintTop_toBottomOf="@+id/clock" />
+                android:layout_marginEnd="24dp"/>
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

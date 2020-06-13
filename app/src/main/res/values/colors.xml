@@ -12,4 +12,6 @@
 
     <color name="bulbColor">@android:color/black</color>
 
+    <color name="borderColor">#9F9F9F</color>
+
 </resources>
