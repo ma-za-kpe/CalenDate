@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_calender"
-        android:name="com.maku.calendate.ui.calender.CalenderFragment"
+        android:name="com.maku.calendate.ui.fragments.calender.CalenderFragment"
         android:label="@string/title_calender"
         tools:layout="@layout/fragment_calender" />
 
     <fragment
         android:id="@+id/navigation_time"
-        android:name="com.maku.calendate.ui.time.TimeFragment"
+        android:name="com.maku.calendate.ui.fragments.time.TimeFragment"
         android:label="@string/title_date"
         tools:layout="@layout/fragment_time" />
 
     <fragment
         android:id="@+id/navigation_about"
-        android:name="com.maku.calendate.ui.about.AboutFragment"
+        android:name="com.maku.calendate.ui.fragments.about.AboutFragment"
         android:label="@string/title_about"
         tools:layout="@layout/fragment_about" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.maku.calendate.ui.time
+package com.maku.calendate.ui.fragments.time
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.maku.calendate.ui
+package com.maku.calendate.ui.activities
 
 import android.Manifest
 import android.content.Intent
@@ -67,8 +67,5 @@ class MainActivity : AppCompatActivity() {
         }
 
         }
-
-
-
 
 }
