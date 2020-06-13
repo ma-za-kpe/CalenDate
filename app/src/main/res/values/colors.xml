@@ -8,7 +8,7 @@
 
     <color name="statusBarColor">#9F9F9F</color>
 
-    <color name="textColor">#9F9F9F</color>
+    <color name="textColor">#000000</color>
 
     <color name="bulbColor">@android:color/black</color>
 

@@ -3,5 +3,6 @@
     <string name="title_calender">Calender</string>
     <string name="title_date">Clock</string>
     <string name="title_about">About</string>
-    <string name="set_a_deta_with_anyone_in_your_contacts">Set a date.</string>
+    <string name="pick_a_date">Date.</string>
+    <string name="pick_time">Time</string>
 </resources>
