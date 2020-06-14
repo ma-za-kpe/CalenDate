@@ -15,8 +15,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.maku.calendate.R
 import com.maku.calendate.databinding.ActivityListBinding
 import com.maku.calendate.databinding.FragmentCalenderBinding
+import com.maku.calendate.ui.fragments.list.PostBottomDialogFragment
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : AppCompatActivity(), PostBottomDialogFragment.ItemClickListener {
 
     private lateinit var mActivityListBinding: ActivityListBinding
 
@@ -54,6 +55,10 @@ class ListActivity : AppCompatActivity() {
             else -> true
         }
 
+    }
+
+    override fun onItemClick(item: String?) {
+        TODO("Not yet implemented")
     }
 
 }

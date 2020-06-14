@@ -67,6 +67,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // If you're building your app using Android Gradle plugin 4.0.0 or higher, the plugin extends support for using a number of Java 8 language APIs without requiring a minimum API level for your app.
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.5'

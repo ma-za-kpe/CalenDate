@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.maku.calendate.ui.fragments.ListFragment"
+        android:name="com.maku.calendate.ui.fragments.list.ListFragment"
         android:label="list_fragment"
         tools:layout="@layout/list_fragment" />
 </navigation>

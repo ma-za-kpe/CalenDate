@@ -1,4 +1,4 @@
-package com.maku.calendate.ui.fragments
+package com.maku.calendate.ui.fragments.list
 
 import androidx.lifecycle.ViewModel
 
