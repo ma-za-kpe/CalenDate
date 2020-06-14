@@ -5,6 +5,7 @@
     <string name="title_about">About</string>
     <string name="pick_a_date">Date.</string>
     <string name="pick_time">Time</string>
-    <string name="add_to_do_s">Add TO DO items </string>
+    <string name="add_to_do_s">Click to add TO DO items </string>
     <string name="fab_content_desc">fab_content_desc</string>
+    <string name="take_dog_for_walk">Take dog for walk</string>
 </resources>

@@ -5,17 +5,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.TimePicker
 import androidx.annotation.Nullable
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.maku.calendate.R
-import java.lang.RuntimeException
+import com.maku.calendate.utils.getTime
+import timber.log.Timber
+import java.util.*
+
 
 class PostBottomDialogFragment : BottomSheetDialogFragment(),
     View.OnClickListener {
 
-    private var mListener: ItemClickListener? = null
+    private var mListener: ItemClickListener?= null
+    var timee:String?= null
+    var eventDate: Long = 0
+    lateinit var description: String
 
     @Nullable
     override fun onCreateView(
@@ -30,9 +39,40 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
         @Nullable savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
+
+        //get description
+        val descText = view.findViewById<EditText>(R.id.descText)
+        description = descText.text.toString()
+
+        //get date from calender
+        val calenderDate = view.findViewById(R.id.calender) as CalendarView // get the reference of CalendarView
+        calenderDate.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val c: Calendar = Calendar.getInstance()
+            c.set(year, month, dayOfMonth)
+            eventDate = c.getTimeInMillis()
+        }
+
+        //get time from clock
+        var time = view.findViewById(R.id.alarmTimePicker) as TimePicker // get the reference of CalendarView
+        time.setOnTimeChangedListener { _, hour, minute ->
+            timee = getTime(hour, minute);
+        }
+
+        //send to room db and close bottom dialog
         view.findViewById<FloatingActionButton>(R.id.floating_action_button).setOnClickListener {
+
+            Timber.d("date eventDate " + eventDate)
+            Timber.d("timeeee " + timee)
+            Timber.d("description " + descText.text.toString())
+            
+            sendToDB(eventDate, timee, descText.text.toString())
+
             dismiss();
         }
+    }
+
+    private fun sendToDB(eventDate: Long, timee: String?, toString: String) {
+
     }
 
     override fun onAttach(context: Context) {
@@ -55,7 +95,6 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
     override fun onClick(view: View) {
         val tvSelected = view as TextView
         mListener!!.onItemClick(tvSelected.text.toString())
-        dismiss()
     }
 
     interface ItemClickListener {

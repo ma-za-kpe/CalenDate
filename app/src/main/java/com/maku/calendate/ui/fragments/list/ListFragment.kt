@@ -26,14 +26,12 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.setTheme(R.style.AppTheme)  // Set AppTheme before setting content view.
         // Inflate the layout for this fragment
         mFragmentListBinding = DataBindingUtil.inflate(
             inflater, R.layout.list_fragment, container, false)
 
         mFragmentListBinding.button.setOnClickListener {
 
-           Toast.makeText(getActivity(), "post " , Toast.LENGTH_LONG).show();
             showBottomSheet()
 
         }
