@@ -44,6 +44,11 @@ android {
         jvmTarget = "1.8"
     }
 
+    //Add the packagingOptions block inside the android block to exclude the atomic functions module from the package and prevent warnings.
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
 }
 
 dependencies {
@@ -72,6 +77,21 @@ dependencies {
     // If you're building your app using Android Gradle plugin 4.0.0 or higher, the plugin extends support for using a number of Java 8 language APIs without requiring a minimum API level for your app.
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.5'
 
+    // Room components
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
+
+// Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.archLifecycleVersion"
+
+// Kotlin components
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
