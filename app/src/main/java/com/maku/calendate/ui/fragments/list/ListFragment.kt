@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.maku.calendate.R
+import com.maku.calendate.data.adapters.RemindersAdapters
 import com.maku.calendate.data.db.interfaces.ReminderInterface
 import com.maku.calendate.databinding.ListFragmentBinding
 import timber.log.Timber
@@ -18,6 +22,7 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener, Rem
 
     private var callback: ReminderInterface? = null
 
+    private lateinit var mListViewModel: ListViewModel
 
     companion object {
         fun newInstance() = ListFragment()
@@ -33,8 +38,15 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener, Rem
         mFragmentListBinding = DataBindingUtil.inflate(
             inflater, R.layout.list_fragment, container, false)
 
-        //initialise the interafce
-        callback = this
+        val adapter = RemindersAdapters(requireContext())
+        mFragmentListBinding.recyclerView?.adapter = adapter
+        mFragmentListBinding.recyclerView?.layoutManager = LinearLayoutManager(requireContext())
+
+        mListViewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+        mListViewModel.allWords.observe(requireActivity(), Observer { words ->
+            // Update the cached copy of the words in the adapter.
+            words?.let { adapter.setWords(it) }
+        })
 
         mFragmentListBinding.button.setOnClickListener {
 
