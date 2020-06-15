@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.maku.calendate.R
+import com.maku.calendate.data.db.interfaces.ReminderInterface
 import com.maku.calendate.databinding.ListFragmentBinding
+import timber.log.Timber
 
-class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
+class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener, ReminderInterface {
 
     private lateinit var mFragmentListBinding: ListFragmentBinding
+
+    private var callback: ReminderInterface? = null
+
 
     companion object {
         fun newInstance() = ListFragment()
@@ -30,6 +33,9 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
         mFragmentListBinding = DataBindingUtil.inflate(
             inflater, R.layout.list_fragment, container, false)
 
+        //initialise the interafce
+        callback = this
+
         mFragmentListBinding.button.setOnClickListener {
 
             showBottomSheet()
@@ -41,8 +47,7 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
 
 
     fun showBottomSheet() {
-        val addPhotoBottomDialogFragment: PostBottomDialogFragment =
-            PostBottomDialogFragment.newInstance()
+        val addPhotoBottomDialogFragment: PostBottomDialogFragment = PostBottomDialogFragment.newInstance(callback)
         activity?.getSupportFragmentManager()?.let {
             addPhotoBottomDialogFragment.show(
                 it,
@@ -58,6 +63,10 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
     }
 
     override fun onItemClick(item: String?) {
+        Timber.d("desc " + item)
+    }
+
+    override fun getData(description: String?) {
         TODO("Not yet implemented")
     }
 

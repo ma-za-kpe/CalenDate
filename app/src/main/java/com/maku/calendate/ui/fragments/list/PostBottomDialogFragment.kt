@@ -1,18 +1,20 @@
 package com.maku.calendate.ui.fragments.list
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.TimePicker
+import android.widget.*
 import androidx.annotation.Nullable
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.maku.calendate.R
+import com.maku.calendate.data.db.entities.Reminder
+import com.maku.calendate.data.db.interfaces.ReminderInterface
 import com.maku.calendate.utils.getTime
 import timber.log.Timber
 import java.util.*
@@ -25,12 +27,15 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
     var timee:String?= null
     var eventDate: Long = 0
     lateinit var description: String
+    private lateinit var mListViewModel: ListViewModel
 
     @Nullable
     override fun onCreateView(
         inflater: LayoutInflater, @Nullable container: ViewGroup?,
         @Nullable savedInstanceState: Bundle?
     ): View? {
+        mListViewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+
         return inflater.inflate(R.layout.bottom_sheet, container, false)
     }
 
@@ -64,15 +69,25 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
             Timber.d("date eventDate " + eventDate)
             Timber.d("timeeee " + timee)
             Timber.d("description " + descText.text.toString())
-            
+
             sendToDB(eventDate, timee, descText.text.toString())
 
             dismiss();
         }
     }
 
-    private fun sendToDB(eventDate: Long, timee: String?, toString: String) {
+    private fun sendToDB(eventDate: Long, timee: String?, desc: String) {
 
+        if (TextUtils.isEmpty(desc)) {
+            Toast.makeText(
+                requireContext(),
+                "enter something",
+                Toast.LENGTH_LONG).show()
+        } else {
+            val randomDouble = Math.random()
+            val word = Reminder(randomDouble.toInt(), desc)
+            mListViewModel.insert(word)
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -94,17 +109,19 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
 
     override fun onClick(view: View) {
         val tvSelected = view as TextView
-        mListener!!.onItemClick(tvSelected.text.toString())
+        mListener!!.onItemClick(description)
     }
 
     interface ItemClickListener {
-        fun onItemClick(item: String?)
+        fun onItemClick(item: String?) {}
     }
 
     companion object {
         const val TAG = "ActionBottomDialog"
-        fun newInstance(): PostBottomDialogFragment {
+        fun newInstance(callback: ReminderInterface?): PostBottomDialogFragment {
+//            callback = callback
             return PostBottomDialogFragment()
         }
     }
+
 }
