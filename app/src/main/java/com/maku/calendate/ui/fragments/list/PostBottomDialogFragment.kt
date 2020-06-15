@@ -24,7 +24,7 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
     View.OnClickListener {
 
     private var mListener: ItemClickListener?= null
-    var timee:String?= null
+    lateinit var timee:String
     var eventDate: Long = 0
     lateinit var description: String
     private lateinit var mListViewModel: ListViewModel
@@ -60,7 +60,7 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
         //get time from clock
         var time = view.findViewById(R.id.alarmTimePicker) as TimePicker // get the reference of CalendarView
         time.setOnTimeChangedListener { _, hour, minute ->
-            timee = getTime(hour, minute);
+            timee = getTime(hour, minute).toString();
         }
 
         //send to room db and close bottom dialog
@@ -76,7 +76,7 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
         }
     }
 
-    private fun sendToDB(eventDate: Long, timee: String?, desc: String) {
+    private fun sendToDB(eventDate: Long, timee: String, desc: String) {
 
         if (TextUtils.isEmpty(desc)) {
             Toast.makeText(
@@ -85,7 +85,7 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
                 Toast.LENGTH_LONG).show()
         } else {
             val randomDouble = Math.random()
-            val word = Reminder(randomDouble.toInt(), desc)
+            val word = Reminder(randomDouble.toInt(), eventDate, timee, desc)
             mListViewModel.insert(word)
         }
     }

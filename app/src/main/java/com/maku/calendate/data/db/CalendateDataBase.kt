@@ -9,7 +9,7 @@ import com.maku.calendate.data.db.entities.Reminder
 
 @Database(
     entities = [Reminder::class],
-    version = 1
+    version = 2
 )
 abstract class CalendateDataBase: RoomDatabase() {
     abstract fun reminderDao(): ReminderDao

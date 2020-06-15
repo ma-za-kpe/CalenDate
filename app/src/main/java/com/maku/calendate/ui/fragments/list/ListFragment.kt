@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.maku.calendate.R
 import com.maku.calendate.data.adapters.RemindersAdapters
+import com.maku.calendate.data.db.entities.Reminder
 import com.maku.calendate.data.db.interfaces.ReminderInterface
 import com.maku.calendate.databinding.ListFragmentBinding
 import timber.log.Timber
@@ -80,6 +81,10 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener, Rem
 
     override fun getData(description: String?) {
         TODO("Not yet implemented")
+    }
+
+    override fun delete(reminder: Reminder) {
+        mListViewModel.delete(reminder)
     }
 
 }

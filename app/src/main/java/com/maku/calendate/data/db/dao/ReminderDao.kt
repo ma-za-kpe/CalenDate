@@ -1,11 +1,9 @@
 package com.maku.calendate.data.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.maku.calendate.data.db.entities.Reminder
+
 
 @Dao
 interface ReminderDao {
@@ -17,4 +15,8 @@ interface ReminderDao {
 
     @Query("DELETE FROM reminder_table")
     suspend fun deleteAll()
+
+    @Delete
+    suspend fun delete(reminder: Reminder)
+
 }

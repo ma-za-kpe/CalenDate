@@ -36,4 +36,11 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     fun insert(mReminder: Reminder) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(mReminder)
     }
+
+    /**
+     * delete
+     */
+    fun delete(mReminder: Reminder) = viewModelScope.launch(Dispatchers.IO) {
+        repository.delete(mReminder)
+    }
 }
