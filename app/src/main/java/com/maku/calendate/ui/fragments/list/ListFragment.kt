@@ -42,7 +42,9 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
            removeItem(item)
         })
         mFragmentListBinding.recyclerView.adapter = adapter
-        mFragmentListBinding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val layoutManager = LinearLayoutManager(requireContext())
+        mFragmentListBinding.recyclerView.layoutManager = layoutManager
 
         mListViewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         mListViewModel.allWords.observe(requireActivity(), Observer { words ->
