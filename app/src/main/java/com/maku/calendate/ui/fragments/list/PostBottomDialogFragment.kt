@@ -1,6 +1,5 @@
 package com.maku.calendate.ui.fragments.list
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
@@ -17,6 +16,7 @@ import com.maku.calendate.data.db.entities.Reminder
 import com.maku.calendate.data.db.interfaces.ReminderInterface
 import com.maku.calendate.utils.getTime
 import timber.log.Timber
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -26,6 +26,7 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
     private var mListener: ItemClickListener?= null
     lateinit var timee:String
     var eventDate: Long = 0
+    var zoroDate: Long = 0
     lateinit var description: String
     private lateinit var mListViewModel: ListViewModel
 
@@ -65,6 +66,14 @@ class PostBottomDialogFragment : BottomSheetDialogFragment(),
 
         //send to room db and close bottom dialog
         view.findViewById<FloatingActionButton>(R.id.floating_action_button).setOnClickListener {
+            val currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+            if (eventDate.equals(zoroDate)){
+                val c = Calendar.getInstance().time
+                //                val l: Long = currentDate.toLong()
+
+                eventDate = c.time
+                Timber.d("date eventDate not zero " + eventDate)
+            }
 
             Timber.d("date eventDate " + eventDate)
             Timber.d("timeeee " + timee)

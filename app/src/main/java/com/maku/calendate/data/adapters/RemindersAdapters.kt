@@ -18,7 +18,8 @@ import java.util.concurrent.CompletionException
 
 class RemindersAdapters(
     context: Context,
-    val OnClickToRemove : (Any) -> Unit
+    val OnClickToRemove : (Any) -> Unit,
+    val setAlarmNotification : (Any) -> Unit
 ) :
     RecyclerView.Adapter<RemindersAdapters.WordViewHolder>() {
 
@@ -43,6 +44,8 @@ class RemindersAdapters(
         holder.wordItemView.text = current.description
         holder.wordItemView.setOnClickListener {
             Timber.d("date " + current.date + " timeeee " + current.time)
+            // set alarm notofication
+            setAlarmNotification(current)
         }
 
         holder.checkBoxDelete.setOnClickListener{ _ ->

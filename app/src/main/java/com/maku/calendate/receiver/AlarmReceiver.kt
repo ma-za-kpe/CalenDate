@@ -6,8 +6,9 @@ import android.content.Context
 import android.content.Intent
 
 
-
-
+/***
+ * AlarmReceiver is triggered by the AlarmManager to send the notification when the user-defined date and time is up
+ */
 class AlarmReceiver: BroadcastReceiver() {
 
     private var mNotificationManager: NotificationManager? = null
