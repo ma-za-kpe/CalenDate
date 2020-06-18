@@ -44,7 +44,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .bigLargeIcon(null)
 
     //  add snooze action
-    val snoozeIntent = Intent(applicationContext, SnoozeReceiver::class.java)
+    val snoozeIntent = Intent(applicationContext, ListActivity::class.java)
     val snoozePendingIntent: PendingIntent = PendingIntent.getBroadcast(
         applicationContext,
         REQUEST_CODE,

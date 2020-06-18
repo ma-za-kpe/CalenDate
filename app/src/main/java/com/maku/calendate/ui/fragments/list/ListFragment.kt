@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -19,6 +20,7 @@ import com.maku.calendate.data.adapters.RemindersAdapters
 import com.maku.calendate.data.db.entities.Reminder
 import com.maku.calendate.data.db.interfaces.ReminderInterface
 import com.maku.calendate.databinding.ListFragmentBinding
+import com.maku.calendate.utils.sendNotification
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
@@ -120,11 +122,18 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
         //compare the two times
         if (timeFromDB.time == currentTime && dateFromDB == currentDate) {
             Toast.makeText(requireContext(), "works", Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(requireContext(), "doesnt work", Toast.LENGTH_LONG).show()
-        }
 
-        // create a notification
+            //construct the message
+            val message = item.description + " at " + timeFromDB.time + " on " + dateFromDB
+
+            // create a notification
+            val notificationManager =
+                ContextCompat.getSystemService(
+                    requireContext(),
+                    NotificationManager::class.java
+                ) as NotificationManager
+            notificationManager.sendNotification(message, requireContext())
+        }
 
     }
 
