@@ -16,7 +16,7 @@ import com.maku.calendate.data.db.interfaces.ReminderInterface
 import com.maku.calendate.databinding.ListFragmentBinding
 import timber.log.Timber
 
-class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener, ReminderInterface {
+class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
 
     private lateinit var mFragmentListBinding: ListFragmentBinding
 
@@ -38,7 +38,9 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener, Rem
         mFragmentListBinding = DataBindingUtil.inflate(
             inflater, R.layout.list_fragment, container, false)
 
-        val adapter = RemindersAdapters(requireContext())
+        val adapter = RemindersAdapters(requireContext(), {item ->
+           removeItem(item)
+        })
         mFragmentListBinding.recyclerView.adapter = adapter
         mFragmentListBinding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -55,6 +57,10 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener, Rem
         }
 
         return mFragmentListBinding.root
+    }
+
+    private fun removeItem(item: Any) {
+        mListViewModel.delete(item as Reminder)
     }
 
 
@@ -76,14 +82,6 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener, Rem
 
     override fun onItemClick(item: String?) {
         Timber.d("desc " + item)
-    }
-
-    override fun getData(description: String?) {
-        TODO("Not yet implemented")
-    }
-
-    override fun delete(reminder: Reminder) {
-        mListViewModel.delete(reminder)
     }
 
 }

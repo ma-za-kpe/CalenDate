@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +17,8 @@ import timber.log.Timber
 import java.util.concurrent.CompletionException
 
 class RemindersAdapters(
-    context: Context
-
+    context: Context,
+    val OnClickToRemove : (Any) -> Unit
 ) :
     RecyclerView.Adapter<RemindersAdapters.WordViewHolder>() {
 
@@ -28,7 +29,7 @@ class RemindersAdapters(
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val wordItemView: TextView = itemView.findViewById(R.id.textView)
-        val checkBoxDelete: CheckBox = itemView.findViewById(R.id.checkboxDelete)
+        val checkBoxDelete: ImageButton = itemView.findViewById(R.id.checkboxDelete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -44,14 +45,14 @@ class RemindersAdapters(
             Timber.d("date " + current.date + " timeeee " + current.time)
         }
 
-        holder.checkBoxDelete.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
+        holder.checkBoxDelete.setOnClickListener{ _ ->
                 Timber.d("ive been checked, so delete me")
                // 1. STRIKE THROUGH THE TEXT TO SHOW Completion
-                holder.wordItemView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                //holder.wordItemView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 // 2. pass the item to the fragment
                 Timber.d("passing back to fragment " + current)
-            }
+                OnClickToRemove(current)
+
         }
 
     }
