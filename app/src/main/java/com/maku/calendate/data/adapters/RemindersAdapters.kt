@@ -1,29 +1,30 @@
 package com.maku.calendate.data.adapters
 
 import android.content.Context
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.maku.calendate.R
 import com.maku.calendate.data.db.entities.Reminder
-import com.maku.calendate.data.db.interfaces.ReminderInterface
+import com.maku.calendate.ui.fragments.list.ListViewModel
 import timber.log.Timber
+import java.util.concurrent.CompletionException
 
-class RemindersAdapters internal constructor(
+class RemindersAdapters(
     context: Context
-) : RecyclerView.Adapter<RemindersAdapters.WordViewHolder>() {
 
-    private var listener: ReminderInterface? = null
-
-//    fun RemindersAdapters(context: Context, listener: ReminderInterface) {
-//        this.listener = listener;
-//    }
+) :
+    RecyclerView.Adapter<RemindersAdapters.WordViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var words = emptyList<Reminder>() // Cached copy of words
+//    private var viewModel: ListViewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+
+    private var words: List<Reminder>   // Cached copy of words
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val wordItemView: TextView = itemView.findViewById(R.id.textView)
@@ -46,7 +47,10 @@ class RemindersAdapters internal constructor(
         holder.checkBoxDelete.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 Timber.d("ive been checked, so delete me")
-                listener?.delete(current)
+               // 1. STRIKE THROUGH THE TEXT TO SHOW Completion
+                holder.wordItemView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                // 2. pass the item to the fragment
+                Timber.d("passing back to fragment " + current)
             }
         }
 
@@ -58,4 +62,9 @@ class RemindersAdapters internal constructor(
     }
 
     override fun getItemCount() = words.size
+
+    init {
+        this.words = emptyList<Reminder>()
+    }
+
 }
