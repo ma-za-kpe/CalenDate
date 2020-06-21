@@ -15,7 +15,7 @@ private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
 private val FLAGS = 0
 
-// TODO: Step 1.1 extension function to send messages (GIVEN)
+// extension function to send messages (GIVEN)
 /**
  * Builds and delivers the notification.
  *
@@ -35,12 +35,12 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     )
 
     // add style
-    val eggImage = BitmapFactory.decodeResource(
+    val Image = BitmapFactory.decodeResource(
         applicationContext.resources,
         R.drawable.calendate
     )
     val bigPicStyle = NotificationCompat.BigPictureStyle()
-        .bigPicture(eggImage)
+        .bigPicture(Image)
         .bigLargeIcon(null)
 
     //  add snooze action
@@ -70,7 +70,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
         //  add style to builder
         .setStyle(bigPicStyle)
-        .setLargeIcon(eggImage)
+        .setLargeIcon(Image)
 
         //  add snooze action
         .addAction(

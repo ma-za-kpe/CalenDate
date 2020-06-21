@@ -18,8 +18,9 @@ import java.util.concurrent.CompletionException
 
 class RemindersAdapters(
     context: Context,
-    val OnClickToRemove : (Any) -> Unit,
-    val setAlarmNotification : (Any) -> Unit
+    val getDetailsForAlarm : (Any) -> Unit,
+    val onClickToRemove : (Any) -> Unit,
+    val onClickToShowItemDetails : (Any) -> Unit
 ) :
     RecyclerView.Adapter<RemindersAdapters.WordViewHolder>() {
 
@@ -40,12 +41,13 @@ class RemindersAdapters(
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val current = words[position]
+        getDetailsForAlarm(current)
         //check if list is empty
         holder.wordItemView.text = current.description
         holder.wordItemView.setOnClickListener {
             Timber.d("date " + current.date + " timeeee " + current.time)
             // set alarm notofication
-            setAlarmNotification(current)
+            onClickToShowItemDetails(current)
         }
 
         holder.checkBoxDelete.setOnClickListener{ _ ->
@@ -54,7 +56,7 @@ class RemindersAdapters(
                 //holder.wordItemView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 // 2. pass the item to the fragment
                 Timber.d("passing back to fragment " + current)
-                OnClickToRemove(current)
+                onClickToRemove(current)
 
         }
 

@@ -12,6 +12,8 @@
 
     <color name="bulbColor">#FFFFFF</color>
 
+    <color name="removeColor">@android:color/white</color>
+
     <color name="borderColor">#4CAF50</color>
 
     <color name="btnColor">#4CAF50</color>
