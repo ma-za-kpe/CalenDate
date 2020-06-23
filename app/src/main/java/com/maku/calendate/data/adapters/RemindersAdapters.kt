@@ -63,7 +63,7 @@ class RemindersAdapters(
         holder.alarm.setOnClickListener {_ ->
             val new_image: Drawable = CalenDate.applicationContext().resources.getDrawable(R.drawable.ic_alarm_on)
             // turn alarm on when user clicks
-            holder.alarm.setBackgroundDrawable(new_image)
+            holder.alarm.background = new_image
             setAlarm(current)
         }
 

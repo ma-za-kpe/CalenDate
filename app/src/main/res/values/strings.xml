@@ -9,7 +9,7 @@
     <string name="fab_content_desc">fab_content_desc</string>
     <string name="take_dog_for_walk">Take dog for walk</string>
 
-    <string name="snooze">Delete Reminder</string>
+    <string name="snooze">View Reminder</string>
     <string name="notification_channel_id" translatable="false">reminder_channel</string>
     <string name="notification_title">Times Up!</string>
     <string name="notification_channel_name" translatable="true">Reminder</string>

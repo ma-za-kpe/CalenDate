@@ -131,13 +131,6 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
 
         val alarmManager: AlarmManager = CalenDate.applicationContext().getSystemService(ALARM_SERVICE) as AlarmManager
 
-        val repeatInterval = AlarmManager.INTERVAL_HALF_HOUR
-
-//        val triggerTime: Long = (SystemClock.elapsedRealtime() + repeatInterval)
-        val t: Time = Time.valueOf("6:14:00")
-        val l: Long = t.time
-        val triggerTime: Long = l
-
         //current time
         val currentTime: String = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
         val formatter = SimpleDateFormat("hh:mm a")
@@ -167,14 +160,11 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
             Toast.makeText(requireContext(), "Time has gone.", Toast.LENGTH_LONG).show()
         } else {
             // it's a positive time
-            Toast.makeText(requireContext(), " you have time left." + SystemClock.currentThreadTimeMillis(), Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), " you have time left.", Toast.LENGTH_LONG).show()
             alarmManager.set(AlarmManager.RTC,
                 Date().time +
                         60 * 1000 * 1, notifyPendingIntent);
         }
-
-        // If the alarm has been set, cancel it.
-//        alarmManager.cancel(notifyPendingIntent)
 
     }
 

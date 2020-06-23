@@ -76,7 +76,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .addAction(
             R.drawable.ic_remove,
             applicationContext.getString(R.string.snooze),
-            snoozePendingIntent
+            contentPendingIntent
         )
 
         //  set priority
