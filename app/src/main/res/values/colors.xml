@@ -18,4 +18,6 @@
 
     <color name="btnColor">#9F9F9F</color>
 
+    <color name="alarmOnColor">#4CAF50</color>
+
 </resources>

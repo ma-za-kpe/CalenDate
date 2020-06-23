@@ -1,23 +1,22 @@
 package com.maku.calendate.data.adapters
 
 import android.content.Context
-import android.graphics.Paint
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.maku.calendate.CalenDate
 import com.maku.calendate.R
 import com.maku.calendate.data.db.entities.Reminder
-import com.maku.calendate.ui.fragments.list.ListViewModel
 import timber.log.Timber
-import java.util.concurrent.CompletionException
+
 
 class RemindersAdapters(
     context: Context,
+    val setAlarm : (Any) -> Unit,
     val getDetailsForAlarm : (Any) -> Unit,
     val onClickToRemove : (Any) -> Unit,
     val onClickToShowItemDetails : (Any) -> Unit
@@ -25,13 +24,14 @@ class RemindersAdapters(
     RecyclerView.Adapter<RemindersAdapters.WordViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-//    private var viewModel: ListViewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+    //private var viewModel: ListViewModel = ViewModelProvider(this).get(ListViewModel::class.java)
 
     private var words: List<Reminder>   // Cached copy of words
 
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val wordItemView: TextView = itemView.findViewById(R.id.textView)
         val checkBoxDelete: ImageButton = itemView.findViewById(R.id.checkboxDelete)
+        val alarm: ImageButton = itemView.findViewById(R.id.alarm)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -58,6 +58,13 @@ class RemindersAdapters(
                 Timber.d("passing back to fragment " + current)
                 onClickToRemove(current)
 
+        }
+
+        holder.alarm.setOnClickListener {_ ->
+            val new_image: Drawable = CalenDate.applicationContext().resources.getDrawable(R.drawable.ic_alarm_on)
+            // turn alarm on when user clicks
+            holder.alarm.setBackgroundDrawable(new_image)
+            setAlarm(current)
         }
 
     }
