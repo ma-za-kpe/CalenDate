@@ -95,9 +95,9 @@ class ListFragment : Fragment(), PostBottomDialogFragment.ItemClickListener {
             words?.let { adapter.setWords(it) }
         })
 
-        mFragmentListBinding.teast.setOnClickListener {v ->
-            whatsApp(v)
-        }
+//        mFragmentListBinding.teast.setOnClickListener {v ->
+//            whatsApp(v)
+//        }
 
         mFragmentListBinding.button.setOnClickListener {
             showBottomSheet()
