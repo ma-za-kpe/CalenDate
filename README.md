@@ -19,6 +19,13 @@
 - [Android alarm manager](https://developer.android.com/training/scheduling/alarms) - Alarms (based on the AlarmManager class) give you a way to perform time-based operations outside the lifetime of your application.
 - [Android Day / Night mode](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) - 
 
+**Contributed By:** [Maku Mazakpe](https://github.com/ma-za-kpe/)
+
+## Architecture
+This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture, with only room database.
+
+![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
+
 ## Credit
 This project is built with knowledge gained from the android developer Codelabs from Google.
 - [The alarm manager](https://codelabs.developers.google.com/codelabs/android-training-alarm-manager/index.html?index=..%2F..android-training#0).
@@ -28,6 +35,7 @@ It uses the MVVM architecture and Room persistance library.
 
 ## Contact
 If you need any help, you can connect with me.
-Visit:- [maku](https://www.linkedin.com/in/maku-mazakpe-700a3a165/)
+
+Visit:- [maku](https://maku.dev)
 
 ## License
